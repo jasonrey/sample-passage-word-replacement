@@ -1,0 +1,81 @@
+body {
+    .container {
+        .jumbotron {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+
+            h1.title {
+                font-size: 48px;
+            }
+        }
+    }
+
+    .item {
+        > div  {
+            > p {
+                > span {
+                    padding: 5px;
+                    line-height: 25px;
+                    display: inline-block;
+
+                    &.punc {
+                        padding-left: 0px;
+                    }
+                }
+            }
+        }
+
+        .question {
+            > p {
+                > span {
+                    &:hover {
+                        color: #fff;
+                        background-color: #5bc0de;
+                        border-color: #46b8da;
+                    }
+
+                    &.punc {
+                        &:hover {
+                            background-color: #fff;
+                            border: none;
+                            color: #000;
+                        }
+                    }
+
+                    &.selected {
+                        color: #fff;
+                        background-color: #5cb85c;
+                        border-color: #4cae4c;
+
+                        &:hover {
+                            color: #fff;
+                            background-color: #f0ad4e;
+                            border-color: #eea236;
+                        }
+                    }
+
+                    &.replacing {
+                        &:hover {
+                            border: 0;
+                            background-color: #fff;
+                            color: #000;
+                        }
+                    }
+                }
+            }
+        }
+
+        .answer {
+            border-top: 1px solid #ccc;
+        }
+    }
+
+    .input-original {
+        position: absolute;
+        background-color: #333;
+        color: #eee;
+        padding: 10px 25px;
+        border-radius: 4px;
+        font-size: 18px;
+    }
+}
