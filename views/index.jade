@@ -42,7 +42,7 @@ html
                         br
                         = "    "
                         strong
-                            = "<p><?php echo $paragraph; ?></p>"
+                            = "<?php echo $question; ?>"
                         br
                         = "</div>"
 
@@ -69,6 +69,15 @@ html
                         br
                         = '</span>'
                     p JS will add width and height to the .word block by referencing the w/h before converting it to input field to ensure w/h consistency.
+
+            .panel.panel-default
+                .panel-heading
+                    h2 Question Input
+                .panel-body
+                    pre
+                        = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
+                        br
+                        = "<p>Nullam elementum eu augue non pharetra. Vivamus lacinia velit justo, sit amet venenatis eros commodo a.</p>"
 
             .panel.panel-warning
                 .panel-heading
