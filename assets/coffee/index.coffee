@@ -1,5 +1,5 @@
 $ ->
-    items = $ ".item"
+    items = $ "[data-type='passage-replace']"
 
     # Empty this array if token splitting is not needed
     tokens = [
@@ -84,6 +84,8 @@ $ ->
             node.html input.data "original"
 
             node.removeClass "replacing"
+
+            node.removeAttr "style"
 
     item.on "mouseover", "> p > span", (event) ->
         node = $ @

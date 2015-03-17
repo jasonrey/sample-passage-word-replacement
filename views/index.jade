@@ -21,10 +21,54 @@ html
             .panel.panel-primary
                 .panel-heading
                     h2 Mechanics
-                .panel-body.item(data-allowed="10")
+                .panel-body.item(data-type="passage-replace", data-allowed="10")
                     p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper est at commodo feugiat. Aliquam scelerisque dictum hendrerit. Donec nec dictum enim. Vivamus finibus ligula non aliquam consequat. Morbi vitae tortor ac est vestibulum cursus. Nunc eu sapien tincidunt, venenatis velit auctor, hendrerit urna. Aenean iaculis fermentum mi. Maecenas eu laoreet nibh. Duis ornare fringilla diam, non scelerisque est egestas eu. Nulla elementum ultricies dui, non efficitur velit consequat non. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
 
                     p Nullam elementum eu augue non pharetra. Vivamus lacinia velit justo, sit amet venenatis eros commodo a. Quisque tellus sapien, placerat et metus at, vestibulum aliquet enim. Duis pulvinar odio et quam pulvinar euismod. Integer aliquet non nisi ac interdum. Mauris vulputate purus sit amet nunc luctus, vitae eleifend magna gravida. Phasellus cursus odio id commodo rutrum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque aliquam, urna in congue luctus, quam sem dapibus lectus, a auctor lorem neque ac orci. Mauris maximus non odio pretium hendrerit. Maecenas ut consectetur diam. Nunc ut urna in nibh efficitur euismod in malesuada tortor. Sed ipsum neque, mollis pretium quam quis, euismod tempor sem.
+
+            .panel.panel-default
+                .panel-heading
+                    h2 HTML Block
+                .panel-body
+                    pre
+                        = '<div '
+                        strong data-type="passage-replace"
+                        = " "
+                        strong
+                            = 'data-id="<?php echo $id; ?>"'
+                        = " "
+                        strong data-allowed="10"
+                        = ">"
+                        br
+                        = "    "
+                        strong
+                            = "<p><?php echo $paragraph; ?></p>"
+                        br
+                        = "</div>"
+
+            .panel.panel-default
+                .panel-heading
+                    h2 CSS classes
+                .panel-body
+                    h3 Word Block
+                    pre
+                        = '<span class="word">Lorem</span>'
+
+                    h3 Word Block :hover
+                    pre
+                        = '<span class="word hover">Lorem</span>'
+                    p Hover is controlled through JS by adding .hover instead of CSS :hover because "allowed" checking is imposed.
+
+                    h3 Word Block .replacing
+                    pre
+                        = '<span class="word replacing">'
+                        br
+                        = '    <input type="text" />'
+                        br
+                        = '    <span class="close">&times;</span>'
+                        br
+                        = '</span>'
+                    p JS will add width and height to the .word block by referencing the w/h before converting it to input field to ensure w/h consistency.
 
             .panel.panel-warning
                 .panel-heading
