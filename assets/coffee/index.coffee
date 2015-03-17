@@ -1,7 +1,4 @@
 $ ->
-    String.prototype.repeat = (n) ->
-        return new Array(n + 1).join(@)
-
     items = $ ".item"
 
     # Empty this array if token splitting is not needed
@@ -12,9 +9,7 @@ $ ->
         "!"
     ]
 
-    questions = items.find "div.question"
-
-    paragraphs = questions.find "> p"
+    paragraphs = items.find "> p"
 
     for p in paragraphs
         p = $ p
@@ -27,12 +22,12 @@ $ ->
 
         for word in words
             if word[0] in tokens
-                word = "<span class='punc'>" + word[0] + "</span><span>" + word.substr(1)
+                word = "<span>" + word[0] + "</span><span class='word'>" + word.substr(1)
             else
-                word = "<span>" + word
+                word = "<span class='word'>" + word
 
             if word[word.length - 1] in tokens
-                word = word.slice(0, -1) + "</span><span class='punc'>" + word[word.length - 1] + "</span>"
+                word = word.slice(0, -1) + "</span><span>" + word[word.length - 1] + "</span>"
             else
                 word = word + "</span>"
 
@@ -42,76 +37,68 @@ $ ->
 
         p.html transformedParagraph
 
-    $.each items, (i, item) ->
+    for item in items
         item = $ item
 
-        question = item.find ".question"
+        item.on "click", "> p > span", (event) ->
+            node = $ @
+            block = $ event.delegateTarget
 
-        # Split by types
-        type = item.data "type"
+            allowed = parseInt block.data "allowed"
 
-        if type is "external-replace"
-            answer = $ "<div class='answer'></div>"
-            answer.html question.html()
-            question.after answer
+            return unless node.hasClass "word"
 
-            question.on "click", "> p > span", (event) ->
-                node = $ @
+            return if node.hasClass "replacing"
 
-                return if node.hasClass "punc"
+            return if block.find(".replacing").length >= allowed
 
-                p = node.parent()
+            original = node.html()
 
-                nodeIndex = node.index()
-                pIndex = p.index()
+            node.css
+                width: node.outerWidth()
+                height: node.outerHeight()
 
-                node.toggleClass "selected"
+            node.empty()
 
-                replacement = node.html()
+            input = $ "<input type='text' />"
 
-                if node.hasClass "selected"
-                    replacement = $ "<input type='text' />"
-                    replacement.css "width", node.width()
+            input.val original
+            input.data "original", original
 
-                answer
-                    .find "> p"
-                    .eq pIndex
-                    .find "> span"
-                    .eq nodeIndex
-                    .html replacement
-        else if type is "inline-replace"
-            question.on "click", "> p > span", (event) ->
-                node = $ @
+            node.append input
 
-                return if node.hasClass "punc"
+            node.append $ "<span class='close'>&times;</span>"
 
-                return if node.hasClass "replacing"
+            input.select()
 
-                original = node.html()
+            node.addClass "replacing"
 
-                replacement = $ "<input type='text' />"
+        item.on "click", "> p > span > .close", (event) ->
+            event.stopPropagation()
 
-                replacement.data "original", original
-                replacement.css "width", node.width()
+            button = $ @
 
-                node.html replacement
-                node.addClass "replacing"
+            node = button.parent()
+            input = button.siblings "input"
 
-            question.on "mouseover", "> p > span > input", (event) ->
-                input = $ @
-                original = input.data "original"
+            node.html input.data "original"
 
-                tooltip = $ "<div class='input-original'></div>"
+            node.removeClass "replacing"
 
-                tooltip.html original
+    item.on "mouseover", "> p > span", (event) ->
+        node = $ @
 
-                tooltip.appendTo $ "body"
+        block = $ event.delegateTarget
 
-                tooltip.css
-                    position: "absolute"
-                    top: input.offset().top - tooltip.outerHeight() - 10
-                    left: input.offset().left + ((input.width() - tooltip.outerWidth()) / 2)
+        allowed = parseInt block.data "allowed"
 
-            question.on "mouseout", "> p > span > input", (event) ->
-                $ ".input-original"
-                    .remove()
+        return unless node.hasClass "word"
+        return if node.hasClass "replacing"
+        return if block.find(".replacing").length >= allowed
+
+        node.addClass "hover"
+
+    item.on "mouseout", "> p > span", (event) ->
+        node = $ @
+
+        node.removeClass "hover"
