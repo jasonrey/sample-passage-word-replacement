@@ -21,7 +21,7 @@ html
             .panel.panel-primary
                 .panel-heading
                     h2 Mechanics
-                .panel-body.item(data-type="passage-replace", data-id="1", data-allowed="10")
+                .panel-body.item(data-type="passage-replace", data-id="1", data-allowed="3")
                     .question
                         p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper est at commodo feugiat. Aliquam scelerisque dictum hendrerit. Donec nec dictum enim. Vivamus finibus ligula non aliquam consequat. Morbi vitae tortor ac est vestibulum cursus. Nunc eu sapien tincidunt, venenatis velit auctor, hendrerit urna. Aenean iaculis fermentum mi. Maecenas eu laoreet nibh. Duis ornare fringilla diam, non scelerisque est egestas eu. Nulla elementum ultricies dui, non efficitur velit consequat non. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
 
@@ -64,14 +64,14 @@ html
                     h3 Question Block .question
                     pre= '<div class="question">{Paragraphs}</div>'
 
-                    h3 Word Block .word
+                    h3 Word Block .question p .word
                     pre= '<span class="word">Lorem</span>'
 
-                    h3 Word Block .word.hover
+                    h3 Word Block .question p .word.hover
                     pre= '<span class="word hover">Lorem</span>'
-                    p Hover is controlled through JS by adding .hover instead of CSS :hover because "allowed" checking is imposed.
+                    p.help-block Hover is controlled through JS by adding .hover instead of CSS :hover because "allowed" checking is imposed.
 
-                    h3 Word Block .word.replacing
+                    h3 Word Block .question p .word.replacing
                     pre
                         = '<span class="word replacing">'
                         br
@@ -80,9 +80,18 @@ html
                         = '    <span class="close">&times;</span>'
                         br
                         = '</span>'
-                    p JS will add width and height to the .word block by referencing the w/h before converting it to input field to ensure w/h consistency.
+                    p.help-block JS will add width and height to the .word block by referencing the w/h before converting it to input field to ensure w/h consistency.
 
-                    h3 Check Answer .check
+                    h3 Word Block Input - Correct .question p .word input.correct
+                    pre= '<input type="text" class="correct" />'
+
+                    h3 Word Block Input - Wrong .question p .word input.wrong
+                    pre= '<input type="text" class="wrong" />'
+
+                    h3 Word Block Close Button .question p .word .close
+                    pre= '<span class="close">&times;</span>'
+
+                    h3 Check Answer .question .check
                     pre= '<button class="check">Check Answer</button>'
 
             .panel.panel-default

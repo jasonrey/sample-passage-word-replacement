@@ -1,4 +1,51 @@
 $ ->
+    # Sample answers
+    # Standardise answer to be always array regardless of the number of answers
+    master =
+        "1": [
+            {
+                original: "dolor"
+                answer: "apple"
+            }
+            {
+                original: "Nullam"
+                answer: "Boy"
+            }
+            {
+                original: "lacinia"
+                answer: "cat"
+            }
+        ]
+
+    checkAnswer = (data) ->
+        dfd = $.Deferred()
+
+        # Mocking AJAX and PHP
+        answers = master[data.id]
+
+        response = state: true
+
+        response.state = false if answers.length isnt data.answers.length
+
+        response.result = []
+
+        for answer, i in answers
+            r =
+                state: true
+                result: []
+
+            r.state = false if answer.original isnt data.answers[i].original or answer.answer isnt data.answers[i].answer
+
+            if r.state is false
+                response.state = false
+                r.result.push answer
+
+            response.result.push r
+
+        dfd.resolve response
+
+        return dfd
+
     items = $ "[data-type='passage-replace']"
 
     return if items.length is 0
@@ -62,7 +109,7 @@ $ ->
 
             node.empty()
 
-            input = $ "<input type='text' />"
+            input = $ "<input type='text' class='form-control' />"
 
             input.val original
             input.data "original", original
@@ -109,3 +156,45 @@ $ ->
 
         item.on "click", ".check", (event) ->
             button =  $ @
+            block = $ event.delegateTarget
+            id = block.data "id"
+            allowed = parseInt block.data "allowed"
+
+            inputs = block.find ".question input"
+
+            return if inputs.length < allowed
+
+            inputs.prop "disabled", true
+
+            closeButtons = block.find ".question .close"
+            closeButtons.hide()
+
+            answers = []
+
+            for input in inputs
+                input = $ input
+
+                data =
+                    original: input.data "original"
+                    answer: input.val()
+
+                answers.push data
+
+            checkAnswer(
+                id: id
+                answers: answers
+            ).done (response) ->
+                # (bool) response.state True if overall correct
+                # (array) response.result
+                # response.result = [{
+                #   state: (bool) individual state
+                #   answer: (optional, string/array) answers
+                # }]
+
+                if response.state is true
+                    inputs.addClass "correct"
+                else
+                    for r, i in response.result
+                        input = $ inputs[i]
+
+                        input.addClass if r.state then "correct" else "wrong"
