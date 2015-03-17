@@ -11,53 +11,55 @@ body {
     }
 
     .item {
-        > p {
-            > span {
-                line-height: 35px;
-                display: inline-block;
-                position: relative;
+        .question {
+            > p {
+                > span {
+                    line-height: 35px;
+                    display: inline-block;
+                    position: relative;
 
-                &.word {
-                    margin: 5px;
-                    padding: 0 10px;
-
-                    &.hover {
-                        color: #fff;
-                        background-color: #5bc0de;
-                        border-color: #46b8da;
-                    }
-
-                    &.replacing {
-                        border: 0;
-                        background-color: inherit;
-                        color: #000;
+                    &.word {
                         margin: 5px;
-                        padding: 0;
+                        padding: 0 10px;
 
-                        > input {
-                            width: 100%;
-                            height: 100%;
+                        &.hover {
+                            color: #fff;
+                            background-color: #5bc0de;
+                            border-color: #46b8da;
+                        }
+
+                        &.replacing {
+                            border: 0;
+                            background-color: inherit;
+                            color: #000;
+                            margin: 5px;
+                            padding: 0;
+
+                            > input {
+                                width: 100%;
+                                height: 100%;
+                            }
                         }
                     }
-                }
 
-                .close {
-                    opacity: 1;
-                    line-height: 18px;
-                    height: 22px;
-                    width: 22px;
-                    text-align: center;
-                    border: 1px solid #ccc;
-                    border-radius: 50%;
-                    background: #fff;
-                    position: absolute;
-                    top: -8px;
-                    right: -8px;
-                    color: #ccc;
+                    .close {
+                        opacity: 1;
+                        line-height: 18px;
+                        height: 22px;
+                        width: 22px;
+                        text-align: center;
+                        border: 1px solid #ccc;
+                        border-radius: 50%;
+                        background: #fff;
+                        position: absolute;
+                        top: -8px;
+                        right: -8px;
+                        color: #ccc;
 
-                    &:hover {
-                        color: #333;
-                        border-color: #333;
+                        &:hover {
+                            color: #333;
+                            border-color: #333;
+                        }
                     }
                 }
             }

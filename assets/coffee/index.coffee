@@ -1,6 +1,8 @@
 $ ->
     items = $ "[data-type='passage-replace']"
 
+    return if items.length is 0
+
     # Empty this array if token splitting is not needed
     tokens = [
         "\""
@@ -9,7 +11,7 @@ $ ->
         "!"
     ]
 
-    paragraphs = items.find "> p"
+    paragraphs = items.find ".question > p"
 
     for p in paragraphs
         p = $ p
@@ -40,7 +42,7 @@ $ ->
     for item in items
         item = $ item
 
-        item.on "click", "> p > span", (event) ->
+        item.on "click", ".question > p > span", (event) ->
             node = $ @
             block = $ event.delegateTarget
 
@@ -73,7 +75,7 @@ $ ->
 
             node.addClass "replacing"
 
-        item.on "click", "> p > span > .close", (event) ->
+        item.on "click", ".question > p > span > .close", (event) ->
             event.stopPropagation()
 
             button = $ @
@@ -87,20 +89,23 @@ $ ->
 
             node.removeAttr "style"
 
-    item.on "mouseover", "> p > span", (event) ->
-        node = $ @
+        item.on "mouseover", ".question > p > span", (event) ->
+            node = $ @
 
-        block = $ event.delegateTarget
+            block = $ event.delegateTarget
 
-        allowed = parseInt block.data "allowed"
+            allowed = parseInt block.data "allowed"
 
-        return unless node.hasClass "word"
-        return if node.hasClass "replacing"
-        return if block.find(".replacing").length >= allowed
+            return unless node.hasClass "word"
+            return if node.hasClass "replacing"
+            return if block.find(".replacing").length >= allowed
 
-        node.addClass "hover"
+            node.addClass "hover"
 
-    item.on "mouseout", "> p > span", (event) ->
-        node = $ @
+        item.on "mouseout", ".question > p > span", (event) ->
+            node = $ @
 
-        node.removeClass "hover"
+            node.removeClass "hover"
+
+        item.on "click", ".check", (event) ->
+            button =  $ @
