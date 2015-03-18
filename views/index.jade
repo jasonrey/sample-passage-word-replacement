@@ -59,6 +59,84 @@ html
 
             .panel.panel-default
                 .panel-heading
+                    h2 Transformed Question Block Sample
+                .panel-body
+                    h3 Before
+                    pre
+                        = '<div class="question">'
+                        br
+                        = '    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'
+                        br
+                        = '</div>'
+
+                    h3 After
+                    pre
+                        = '<div class="question">'
+                        br
+                        = '    <p>'
+                        br
+                        = '        <span class="word">Lorem</span>'
+                        br
+                        = '        <span class="word">ipsum</span>'
+                        br
+                        = '        <span class="word">dolor</span>'
+                        br
+                        = '        <span class="word">sit</span>'
+                        br
+                        = '        <span class="word">amet</span>'
+                        br
+                        = '        <span>,</span>'
+                        br
+                        = '        <span class="word">consectetur</span>'
+                        br
+                        = '        <span class="word">adipiscing</span>'
+                        br
+                        = '        <span class="word">elit</span>'
+                        br
+                        = '        <span>.</span>'
+                        br
+                        = '    </p>'
+                        br
+                        = '</div>'
+
+                    h3 Selected
+                    pre
+                        = '<div class="question">'
+                        br
+                        = '    <p>'
+                        br
+                        = '        <span class="word replacing">'
+                        br
+                        = '            <input type="text" />'
+                        br
+                        = '            <span class="close">&times;</span>'
+                        br
+                        = '        </span>'
+                        br
+                        = '        <span class="word">ipsum</span>'
+                        br
+                        = '        <span class="word">dolor</span>'
+                        br
+                        = '        <span class="word">sit</span>'
+                        br
+                        = '        <span class="word">amet</span>'
+                        br
+                        = '        <span>,</span>'
+                        br
+                        = '        <span class="word">consectetur</span>'
+                        br
+                        = '        <span class="word">adipiscing</span>'
+                        br
+                        = '        <span class="word">elit</span>'
+                        br
+                        = '        <span>.</span>'
+                        br
+                        = '    </p>'
+                        br
+                        = '</div>'
+
+            .panel.panel-default
+                .panel-heading
                     h2 CSS Classes
                 .panel-body
                     h3 Question Block .question
@@ -138,4 +216,4 @@ html
             .panel.panel-warning
                 .panel-heading
                     h2 To Do
-                .panel-body#feedback(data-identifier="paragraph-word-replacement")
+                .panel-body#feedback(data-identifier="passage-word-replacement")
