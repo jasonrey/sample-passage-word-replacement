@@ -36,22 +36,22 @@ html
                 .panel-body
                     pre
                         = '<div '
-                        strong data-type="passage-replace"
+                        strong= 'data-type="passage-replace"'
                         = " "
-                        strong= 'data-id="<?php echo $id; ?>"'
+                        strong= 'data-id="(id)"'
                         = " "
-                        strong data-allowed="10"
+                        strong= 'data-allowed="(allowed)"'
                         = ">"
                         br
                         = "    <div "
                         strong= 'class="question"'
                         = ">"
                         br
-                        strong= "        <?php echo $question; ?>"
+                        strong= "        (question)"
                         br
                         = "    </div>"
                         br
-                        = '    <button '
+                        = '    <button|a '
                         strong= 'class="check"'
                         = ">Check Answer</button>"
                         br
@@ -62,7 +62,7 @@ html
                     h2 CSS Classes
                 .panel-body
                     h3 Question Block .question
-                    pre= '<div class="question">{Paragraphs}</div>'
+                    pre= '<div class="question">(question)</div>'
 
                     h3 Word Block .question p .word
                     pre= '<span class="word">Lorem</span>'
