@@ -109,7 +109,7 @@ $ ->
 
             node.empty()
 
-            input = $ "<input type='text' class='form-control' />"
+            input = $ "<input type='text' />"
 
             input.val original
             input.data "original", original

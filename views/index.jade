@@ -47,7 +47,8 @@ html
                         strong= 'class="question"'
                         = ">"
                         br
-                        strong= "        (question)"
+                        = "        "
+                        strong= "(question)"
                         br
                         = "    </div>"
                         br
@@ -139,17 +140,26 @@ html
                 .panel-heading
                     h2 CSS Classes
                 .panel-body
-                    h3 Question Block .question
+                    h3
+                        = "Question Block "
+                        code= ".question"
                     pre= '<div class="question"></div>'
 
-                    h3 Word Block .question p .word
-                    pre= '<span class="word">Lorem</span>'
+                    h3
+                        = "Word Block "
+                        code= ".question p .word"
+                    pre= '<span class="word"></span>'
 
-                    h3 Word Block .question p .word.hover
-                    pre= '<span class="word hover">Lorem</span>'
-                    p.help-block Hover is controlled through JS by adding .hover instead of CSS :hover because "allowed" checking is imposed.
+                    h3
+                        = "Word Block - Hover"
+                        code= ".question p .word.hover"
+                    .alert.alert-warning Hover is controlled through JS by adding .hover instead of CSS :hover because "allowed" checking is imposed.
+                    pre= '<span class="word hover"></span>'
 
-                    h3 Word Block .question p .word.replacing
+                    h3
+                        = "Word Block - Replacing"
+                        code= ".question p .word.replacing"
+                    .alert.alert-warning JS will add width and height to the .word block by referencing the w/h before converting it to input field to ensure w/h consistency.
                     pre
                         = '<span class="word replacing">'
                         br
@@ -158,18 +168,25 @@ html
                         = '    <span class="close">&times;</span>'
                         br
                         = '</span>'
-                    p.help-block JS will add width and height to the .word block by referencing the w/h before converting it to input field to ensure w/h consistency.
 
-                    h3 Word Block Input - Correct .question p .word input.correct
+                    h3
+                        = "Word Block Input - Correct "
+                        code= ".question p .word input.correct"
                     pre= '<input type="text" class="correct" />'
 
-                    h3 Word Block Input - Wrong .question p .word input.wrong
+                    h3
+                        = "Word Block Input - Wrong "
+                        code= ".question p .word input.wrong"
                     pre= '<input type="text" class="wrong" />'
 
-                    h3 Word Block Close Button .question p .word .close
+                    h3
+                        = "Word Block Close Button "
+                        code= ".question p .word .close"
                     pre= '<span class="close">&times;</span>'
 
-                    h3 Check Answer .check
+                    h3
+                        = "Check Answer "
+                        code= ".check"
                     pre= '<button|a class="check">Check Answer</button|a>'
 
             .panel.panel-default
